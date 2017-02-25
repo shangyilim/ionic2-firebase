@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align:center">
+      HOME
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="navigateToReminder()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="display:flex;flex-direction:row;align-items:center;height:100%;">
+    <div style="display:flex;flex-direction:column;align-items:center;width:100%">
+      <img src="/assets/images/clock.png" />
+      <span padding-top style="text-align: center">You haven't created any reminders yet. Tap on the add button to get started.</span>
+    </div>
+
+  </div>
+</ion-content>
