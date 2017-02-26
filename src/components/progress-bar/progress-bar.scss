@@ -1,0 +1,38 @@
+progress-bar {
+
+    .progress-image{
+        height:40px; 
+        margin-left:-15px;
+        z-index:1;
+    }
+    .imageshadow{
+        -webkit-filter: drop-shadow(3px 0px 2px rgba(0, 0, 0, .5));
+        filter: drop-shadow(3px 0px 2px rgba(0, 0, 0, .5));
+    }
+    .background-bar{
+        height:10px;
+        margin-top:20px;
+        margin-left:-15px;
+        background-color:lightgrey;
+    }
+    .foreground-bar{
+        height:10px;
+        margin-top:20px;
+        background-color:#E64B55;
+         -webkit-transition: width 2s; /* Safari */
+    transition: width 2s;
+    }
+    .speech-container{
+        position:relative;
+        left: -10px;
+        top: -4px;
+    }
+    .speech{
+        position: absolute;
+        top: 6px;
+        color: black;
+        left: 16px;
+        text-align: center;
+        width: 50px;
+    }
+}

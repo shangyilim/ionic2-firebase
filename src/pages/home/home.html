@@ -11,12 +11,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <div style="display:flex;flex-direction:row;align-items:center;height:100%;">
+<ion-content >
+  <div *ngIf="!reminderList" style="display:flex;flex-direction:row;align-items:center;height:100%;">
     <div style="display:flex;flex-direction:column;align-items:center;width:100%">
       <img src="/assets/images/clock.png" />
-      <span padding-top style="text-align: center">You haven't created any reminders yet. Tap on the add button to get started.</span>
+      <span padding-top style="text-align: center">
+        You haven't created any reminders yet. Tap on the add button to get started.</span>
     </div>
 
   </div>
+
+  <ion-list *ngIf="reminderList">
+    <ion-item *ngFor="let reminder of reminderList; let i = index" [style.background]="backgroundColors[i]" style="color:white;" (click)="navigateToReminderDetail(reminder)">
+
+      <div style="display:flex">
+        <h3> {{reminder.date}}</h3>
+        
+        <h3 *ngIf="reminder.hasDuration"> &nbsp;-&nbsp;{{reminder.endDate}}</h3>
+      </div>
+      <div>
+         <div style="display:flex">
+           
+        <h1 style="flex:5 0 0"padding-bottom>{{reminder.name}}</h1>
+        <h1 style="flex:1 0 0">{{reminder.getPercentage()}}%</h1>
+      </div>
+        <progress-bar [min]="0" [max]="reminder.getTotalDays()" [progress]="reminder.getLapsedDays()" [avatar]="reminder.character"></progress-bar>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>
