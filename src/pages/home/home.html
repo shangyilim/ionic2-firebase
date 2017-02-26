@@ -22,7 +22,9 @@
   </div>
 
   <ion-list *ngIf="reminderList">
-    <ion-item *ngFor="let reminder of reminderList; let i = index" [style.background]="backgroundColors[i]" style="color:white;" (click)="navigateToReminderDetail(reminder)">
+    <ion-item *ngFor="let reminder of reminderList; let i = index" 
+    [style.background]="backgroundColors[i]" 
+    style="color:white;" (click)="navigateToReminderDetail(reminder)">
 
       <div style="display:flex">
         <h3> {{reminder.date}}</h3>
@@ -32,10 +34,12 @@
       <div>
          <div style="display:flex">
            
-        <h1 style="flex:5 0 0"padding-bottom>{{reminder.name}}</h1>
+        <h1 style="flex:5 0 0" padding-bottom>{{reminder.name}}</h1>
         <h1 style="flex:1 0 0">{{reminder.getPercentage()}}%</h1>
       </div>
-        <progress-bar [min]="0" [max]="reminder.getTotalDays()" [progress]="reminder.getLapsedDays()" [avatar]="reminder.character"></progress-bar>
+        <progress-bar [min]="0" [max]="reminder.getTotalDays()" 
+        [progress]="reminder.getLapsedDays()" [avatar]="reminder.character">
+        </progress-bar>
       </div>
     </ion-item>
   </ion-list>
