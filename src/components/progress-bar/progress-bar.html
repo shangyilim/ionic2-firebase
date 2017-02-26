@@ -1,0 +1,31 @@
+<!--
+  Generated template for the ProgressBar component.
+
+  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+
+<div>
+
+  <!--<div style="display:flex">
+     <div style="background-color:white;height:10px;">
+    <div style="background-color:orangered;height:10px;" [style.width]="progress + '%'"></div>
+  </div>
+  <div style="float:left;background-color:white;height:10px;width:100%"></div>-->
+
+<div style="display:flex;margin-bottom:-10px">
+  <div [style.width]="((progress/max) *100) + '%'"></div>
+     <div class="speech-container">
+       <img class="imageshadow" style="height:40px;margin-left:16px;" src="assets/images/speech-bubble.png" />
+       <div class="speech">{{max-progress}}</div>
+
+     </div>
+</div>
+  <div style="display:flex;padding-bottom:5px;">
+     <div  class="foreground-bar" [style.width]="((progress/max) *100) + '%'"></div>
+     
+     <img class="imageshadow progress-image" [src]="avatar" />
+     <div  class="background-bar" [style.width]="(100-((progress/max) *100)) + '%'"></div>
+  </div>
+ 
+</div>

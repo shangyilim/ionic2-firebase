@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>NEW REMINDER</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="royal" (click)="navigateToReminder()">
+      <button ion-button icon-only color="royal" (click)="createReminder()">
         <ion-icon name="checkmark"></ion-icon>
       </button>
     </ion-buttons>
@@ -23,65 +23,67 @@
 
     <ion-item>
       <ion-label floating>Name</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="reminder.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Date</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="countdown.date"></ion-datetime>
+      <ion-datetime *ngIf="reminder.hasDuration"  displayFormat="DD/MM/YYYY" [(ngModel)]="reminder.date"></ion-datetime>
+      <ion-datetime *ngIf="!reminder.hasDuration" displayFormat="DD/MM/YYYY" [(ngModel)]="reminder.endDate"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Time</ion-label>
-      <ion-datetime padding-top displayFormat="hh:mm A" [(ngModel)]="countdown.time"></ion-datetime>
+      <ion-datetime *ngIf="reminder.hasDuration" padding-top displayFormat="hh:mm A" [(ngModel)]="reminder.time"></ion-datetime>
+      <ion-datetime *ngIf="!reminder.hasDuration" padding-top displayFormat="hh:mm A" [(ngModel)]="reminder.endTime"></ion-datetime>
     </ion-item>
-    <ion-item *ngIf="countdown.hasDuration">
+    <ion-item *ngIf="reminder.hasDuration">
       <ion-label>End Date</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="countdown.endDate"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="reminder.endDate"></ion-datetime>
     </ion-item>
-    <ion-item *ngIf="countdown.hasDuration">
+    <ion-item *ngIf="reminder.hasDuration">
       <ion-label>End Time</ion-label>
-      <ion-datetime padding-top displayFormat="hh:mm A" [(ngModel)]="countdown.endTime"></ion-datetime>
+      <ion-datetime padding-top displayFormat="hh:mm A" [(ngModel)]="reminder.endTime"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Duration</ion-label>
-      <ion-toggle [(ngModel)]="countdown.hasDuration"></ion-toggle>
+      <ion-toggle [(ngModel)]="reminder.hasDuration"></ion-toggle>
     </ion-item>
     <ion-item>
       <h2>Select Character</h2>
-      <div style="display:flex;flex-direction:row;justify-content: center">
-        <img [src]="countdown.character" style="max-height:50px;" />
+      <div padding-top style="display:flex;flex-direction:row;justify-content: center">
+        <img [src]="reminder.character" style="max-height:50px;" />
       </div>
       <ion-grid padding-top>
         <ion-row>
-          <ion-col><button (click)="setCharacter('backpack.png')" clear ion-button icon-only><img src="/assets/images/backpack.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('ball.png')" clear ion-button icon-only><img src="/assets/images/ball.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('basketball.png')" clear ion-button icon-only><img src="/assets/images/basketball.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('bear.png')" clear ion-button icon-only><img src="/assets/images/bear.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('beer.png')" clear ion-button icon-only><img src="/assets/images/beer.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('book.png')" clear ion-button icon-only><img src="/assets/images/book.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('backpack.png')" clear ion-button icon-only><img src="assets/images/backpack.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('ball.png')" clear ion-button icon-only><img src="assets/images/ball.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('basketball.png')" clear ion-button icon-only><img src="assets/images/basketball.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('bear.png')" clear ion-button icon-only><img src="assets/images/bear.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('beer.png')" clear ion-button icon-only><img src="assets/images/beer.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('book.png')" clear ion-button icon-only><img src="assets/images/book.png" /></button></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><button (click)="setCharacter('box.png')" clear ion-button icon-only><img src="/assets/images/box.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('cake.png')" clear ion-button icon-only><img src="/assets/images/cake.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('camera.png')" clear ion-button icon-only><img src="/assets/images/camera.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('cat.png')" clear ion-button icon-only><img src="/assets/images/cat.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('clock.png')" clear ion-button icon-only><img src="/assets/images/clock.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('cloud.png')" clear ion-button icon-only><img src="/assets/images/cloud.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('box.png')" clear ion-button icon-only><img src="assets/images/box.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('cake.png')" clear ion-button icon-only><img src="assets/images/cake.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('camera.png')" clear ion-button icon-only><img src="assets/images/camera.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('cat.png')" clear ion-button icon-only><img src="assets/images/cat.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('clock.png')" clear ion-button icon-only><img src="assets/images/clock.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('cloud.png')" clear ion-button icon-only><img src="assets/images/cloud.png" /></button></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><button (click)="setCharacter('game.png')" clear ion-button icon-only><img src="/assets/images/game.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('gift.png')" clear ion-button icon-only><img src="/assets/images/gift.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('graduation.png')" clear ion-button icon-only><img src="/assets/images/graduation.png"/></button></ion-col>
-          <ion-col><button (click)="setCharacter('mastercard.png')" clear ion-button icon-only><img src="/assets/images/mastercard.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('moneybag.png')" clear ion-button icon-only><img src="/assets/images/moneybag.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('movie.png')" clear ion-button icon-only><img src="/assets/images/movie.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('game.png')" clear ion-button icon-only><img src="assets/images/game.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('gift.png')" clear ion-button icon-only><img src="assets/images/gift.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('graduation.png')" clear ion-button icon-only><img src="assets/images/graduation.png"/></button></ion-col>
+          <ion-col><button (click)="setCharacter('mastercard.png')" clear ion-button icon-only><img src="assets/images/mastercard.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('moneybag.png')" clear ion-button icon-only><img src="assets/images/moneybag.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('movie.png')" clear ion-button icon-only><img src="assets/images/movie.png" /></button></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><button (click)="setCharacter('rainbow.png')" clear ion-button icon-only><img src="/assets/images/rainbow.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('rice.png')" clear ion-button icon-only><img src="/assets/images/rice.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('spaghetti.png')" clear ion-button icon-only><img src="/assets/images/spaghetti.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('sun.png')" clear ion-button icon-only><img src="/assets/images/sun.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('syringe.png')" clear ion-button icon-only><img src="/assets/images/syringe.png" /></button></ion-col>
-          <ion-col><button (click)="setCharacter('throphy.png')" clear ion-button icon-only><img src="/assets/images/throphy.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('rainbow.png')" clear ion-button icon-only><img src="assets/images/rainbow.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('rice.png')" clear ion-button icon-only><img src="assets/images/rice.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('spaghetti.png')" clear ion-button icon-only><img src="assets/images/spaghetti.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('sun.png')" clear ion-button icon-only><img src="assets/images/sun.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('syringe.png')" clear ion-button icon-only><img src="assets/images/syringe.png" /></button></ion-col>
+          <ion-col><button (click)="setCharacter('throphy.png')" clear ion-button icon-only><img src="assets/images/throphy.png" /></button></ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
