@@ -14,12 +14,9 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
   <div style="display:flex">
     <div style="flex:3 0 0">
       <h1>{{reminder.name}}</h1>
@@ -51,7 +48,7 @@
     <ion-item>
       <div style="display:flex">
         <div>Today</div>
-        <div style="font-weight: bold;text-align:end;width:100%">{{getTodayDate()}}</div>
+        <div style="font-weight: bold;text-align:end;width:100%">{{getTodayDate() | date: 'y-M-dd'}}</div>
       </div>
     </ion-item>
   </ion-list>

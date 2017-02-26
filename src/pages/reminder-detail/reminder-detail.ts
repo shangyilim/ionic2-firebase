@@ -16,7 +16,8 @@ export class ReminderDetailPage {
 
   reminder: Reminder;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private af: AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  private af: AngularFire) {
     this.reminder = navParams.data;
   }
 
@@ -25,9 +26,7 @@ export class ReminderDetailPage {
   }
 
   getTodayDate(){
-    let today = new Date();
-    
-    return  today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+   return new Date();
   }
 
   deleteReminder(){
