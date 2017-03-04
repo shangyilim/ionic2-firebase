@@ -46,3 +46,13 @@ An introductory course to Ionic2 with a Firebase backend
   ```
   $ ionic serve
   ```
+  
+  ## Deploy to Device
+  1. create platform that you like android/ios
+  ```
+  $ ionic platform add android
+  ```
+  2. build your platform
+  ```
+  $ ionic build android
+  ```
